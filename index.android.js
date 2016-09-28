@@ -13,16 +13,16 @@ import {
   TouchableHighlight,
   Navigator,
 } from 'react-native';
-import {Button} from 'native-base';
-import Home from './home';
-import Detail from './detail'
-import Price from './price'
+import {Button,Icon} from 'native-base';
+import Home from './portfolio_home';
+import StockList from './portfolio_stocklist'
+import StockInfo from './stock_info'
 export default class NavButton extends Component {
   render() {
     return (
-      <Button block transparent info
+      <Button block primary
         onPress={this.props.onPress}>
-        <Text style={{color:'#00ced1'}}>{this.props.text}</Text>
+        <Text style={{color:'white'}}>{this.props.text}</Text>
       </Button>
     );
   }
@@ -32,40 +32,20 @@ class portfolio extends Component {
     if(route.message==='home')
       return <Home message={route.message}
             navigator={navigator} />;
-    if(parseInt(route.message)<=Number.MAX_SAFE_INTEGER){
-      return <Detail filterID={route.message} navigator={navigator} />
+    if(!isNaN(parseInt(route.message))){
+      return <StockList filterID={route.message} navigator={navigator} detail={route.detail}/>
     }
     else{
-      return <Price price={route.message} navigator={navigator} />
+      return <StockInfo price={route.message} navigator={navigator} detail={route.detail}/>
     }
   }
   render() {
     return (
       <Navigator
-        style={styles.container}
-        initialRoute={{ message: 'home'}}
+        initialRoute={{ message: 'home',detail:'home'}}
         renderScene={this.renderfunc}
       />
     );
   }
 }
-const styles = StyleSheet.create({
-   container: {
-    flex: 1,
-   },
-   messageText: {
-    fontSize: 17,
-    fontWeight: '500',
-    padding: 15,
-    marginTop: 50,
-    marginLeft: 15,
-  },
-  button: {
-    backgroundColor: 'white',
-    padding: 15,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#CDCDCD',
-  },
-});
-
 AppRegistry.registerComponent('portfolio', () => portfolio);
