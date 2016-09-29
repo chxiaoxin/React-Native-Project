@@ -5,7 +5,6 @@
  */
 import React, { Component} from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -14,8 +13,6 @@ import {
   Image
 } from 'react-native';
 import { 
-  Container, 
-  Content,
   Button,
   Icon,
   Header,
@@ -25,16 +22,30 @@ import {
   Badge,
   List,
   ListItem } from 'native-base';
-import NavButton from './index.android'
-import Detail from './portfolio_stocklist';
+import NavButton from './index.android';
 class CondText extends Component{
   render(){
       return (parseFloat(this.props.Return)>0)? 
-      (<View><Text>{this.props.returnType}</Text><Text style={{color:'red'}}><Icon name='md-arrow-dropup' style={{color:'red'}}/>{this.props.Return}</Text></View>)
+      (<View style={{flex:1,flexDirection:'row'}}>
+        <View style={{flex:1}}>
+        <Text>{this.props.returnType}</Text>
+        </View>
+        <View style={{flex:1}}>
+        <Text style={{color:'red'}}>{this.props.Return}</Text>
+        </View>
+      </View>)
         :
-      (<View><Text>{this.props.returnType}</Text><Text style={{color:'green'}}><Icon name='md-arrow-dropdown' style={{color:'green'}} />{this.props.Return}</Text></View>)
+      (<View style={{flex:1,flexDirection:'row'}}>
+        <View style={{flex:1}}>
+        <Text>{this.props.returnType}</Text>
+        </View>
+        <View style={{flex:1}}>
+        <Text style={{color:'green'}}>{this.props.Return}</Text>
+        </View>
+      </View>)
   }
 }
+
 export default class Home extends Component{
  constructor(props) {
     super(props);
@@ -50,7 +61,7 @@ export default class Home extends Component{
       <View style={{flex:1}}>
       <Header>
       <Title>Home</Title>
-      <Button><Icon name='ios-menu' /></Button>
+      <Button transparent><Icon name='ios-menu' /></Button>
       </Header>
         <ListView dataSource={this.state.dataSource} 
         renderRow={

@@ -1,40 +1,38 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import {
-  Alert,
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Navigator,
-  TouchableHighlight,
   Image
 } from 'react-native';
 import { 
-  Container,
-  Content,
   Button,
-  Icon,
   Header,
-  Card,
-  CardItem,
   Title,
   Badge,
+  Icon,
   List,
   ListItem,
-  Tabs
   } from 'native-base';
 import NavButton from './index.android'
 class TimeOptionBtn extends Component{
 	render() {
     return (
-      <Button transparent large
+      <Button transparent
         onPress={this.props.onPress}>
-        <Text style={{color:'blue',textAlign:'center'}}>{this.props.text}</Text>
+        <Text style={{color:'blue'}}>{this.props.text}</Text>
       </Button>
     );
   }
 }
-export default class Price extends Component{
+class IconButton extends Component{
+	render(){
+		return (
+			<Icon name={this.props.name} onPress={this.props.onPress} style={{color:'white'}}/>
+			);
+	}
+}
+export default class StockInfo extends Component{
 	constructor(props){
 		super(props);
 		this.state={
@@ -42,12 +40,14 @@ export default class Price extends Component{
 		}
 	}
 	render(){
-		let url;
 		return (
 			<View style={{flex:1}}>
 			<Header>
+			<Button transparent><IconButton name="ios-arrow-back" onPress={() => this.props.navigator.pop()} /></Button>
 			<Title>{this.props.detail.companyName}</Title>
 			</Header>
+			<List>
+			<ListItem>
 			<View style={{flex:1,flexDirection:'row'}}>
 			<View style={{flex:1}}>
 			<TimeOptionBtn  style={{flex:1}} onPress={() => {
@@ -75,7 +75,7 @@ export default class Price extends Component{
 			} } text='1D' name='ios-arrow-back'/>
 			</View>
 			</View>
-			<List>
+			</ListItem>
 			<ListItem>
 			<View style={{flex:1,flexDirection:'row'}}>
 			<View style={{flex:1}}>
@@ -107,10 +107,9 @@ export default class Price extends Component{
 			</View>
 			</ListItem>
 			<ListItem>
-			<Image source={{uri:'http://chart.finance.yahoo.com/z?s='+this.props.price+'&t='+this.state.time_option+'&q=l&mmon&z=m&p=m50,m100'}} />
+			<Image source={{uri:'http://chart.finance.yahoo.com/z?s='+this.props.company+'&t='+this.state.time_option+'&q=l&mmon&z=m&p=m50,m100'}} />
 			</ListItem>
 			</List>
-    		<NavButton onPress={() => this.props.navigator.pop()} name='ios-arrow-back' text='Back'/>
 			</View>
 			)
 	}

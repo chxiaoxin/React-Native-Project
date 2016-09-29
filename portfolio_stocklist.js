@@ -1,25 +1,29 @@
 import React, { Component} from 'react';
 import {
-  Alert,
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Navigator,
   ListView
 } from 'react-native';
 import { 
-  Button,
-  Icon,
   Header,
   Card,
   CardItem,
+  Button,
   Title,
   Badge,
   List,
   ListItem,
+  Icon
   } from 'native-base';
 import NavButton from './index.android'
+class IconButton extends Component{
+  render(){
+    return (
+      <Icon name={this.props.name} onPress={this.props.onPress} style={{color:'white'}}/>
+      );
+  }
+}
 export default class StockList extends Component{
 	constructor(props){
 		var dataStore=require('./Portfolios');
@@ -32,14 +36,15 @@ export default class StockList extends Component{
 	render()
 	{
 	return (
-      <View style={{flex:1,justifyContent:'center'}}>
+      <View style={{flex:1}}>
       	<Header>
-      	<Title>{this.props.detail}</Title>
+      	<Button transparent><IconButton name='ios-arrow-back' onPress={() => this.props.navigator.pop()}  text='Back'/></Button>
+        <Title>{this.props.detail}</Title>
       	</Header>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => (
-            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <View>
             <Card>
             <CardItem>
             <List>
@@ -53,7 +58,6 @@ export default class StockList extends Component{
             </Card>
             </View>)}
         />
-        <NavButton onPress={() => this.props.navigator.pop()} name='ios-arrow-back' text='Back'/>
       </View>
     );
 	}

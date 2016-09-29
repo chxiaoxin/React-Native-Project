@@ -12888,7 +12888,7 @@ module.exports = {
             "valuationLabel": null,
             "isUserAdded": false,
             "type": null,
-            "pricePercentChange": 0.13059,
+            "rpricePercentChange": 0.13059,
             "direction": null,
             "percentageChangeDirection": null,
             "week52High": 65.49,

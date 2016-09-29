@@ -5,15 +5,13 @@
  */
 import React, {Component} from 'react';
 import {
-  Alert,
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
   Navigator,
 } from 'react-native';
-import {Button,Icon} from 'native-base';
+import {Button} from 'native-base';
 import Home from './portfolio_home';
 import StockList from './portfolio_stocklist'
 import StockInfo from './stock_info'
@@ -36,7 +34,7 @@ class portfolio extends Component {
       return <StockList filterID={route.message} navigator={navigator} detail={route.detail}/>
     }
     else{
-      return <StockInfo price={route.message} navigator={navigator} detail={route.detail}/>
+      return <StockInfo company={route.message} navigator={navigator} detail={route.detail}/>
     }
   }
   render() {
