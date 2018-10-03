@@ -2,5 +2,5 @@
 <div>
   <p1>stock info showcase app design based on react native</p1>
   
-  <img style="display:block;margi:0 auto" src='video.gif'>
+  <img style="display:block;margin:0 auto" src='video.gif'>
 </div>
